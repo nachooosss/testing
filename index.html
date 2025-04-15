@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semana 1</title>
+  </head>
+  <body>
+    <input type="text" id="input" placeholder="Escribe algo aquí..." />
+    <button id="btn">Enviar</button>
+    <h1 id="msg">Procesando Mensaje</h1>
+    <ul id="list"></ul>
+  </body>
+
+  <script>
+    const input = document.getElementById("input");
+    const msgElement = document.getElementById("msg");
+    const btn = document.getElementById("btn");
+    const list = document.getElementById("list");
+
+    btn.addEventListener("click", function () {
+      const inputValue = input.value.trim();
+      if (!inputValue) return;
+
+      msgElement.innerText = `Hola, ${inputValue}`;
+
+      const li = document.createElement("li");
+      li.textContent = inputValue;
+      li.title = "Haz clic para eliminar";
+
+      list.appendChild(li);
+      input.value = "";
+    });
+
+    // Delegación de eventos
+    list.addEventListener("click", function (e) {
+      if (e.target.tagName === "LI") {
+        e.target.remove();
+      }
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    input,
+    button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 24px;
+      cursor: default;
+    }
+    li {
+      cursor: pointer;
+    }
+  </style>
+</html>
